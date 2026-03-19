@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Add Student Result{% endblock %}
+
+{% block content %}
+
+<h1>Add New Student Result</h1>
+
+<form id="studentForm" method="POST" action="{{ url_for('add_student') }}">
+  <div class="form-grid">
+    <div>
+      <label>Roll Number *</label>
+      <input type="text" name="roll" required pattern="\d+" title="Only numbers allowed" placeholder="101">
+    </div>
+    <div>
+      <label>Student Name *</label>
+      <input type="text" name="name" required placeholder="Aarav Sharma">
+    </div>
+  </div>
+
+  <div class="form-grid">
+    <div>
+      <label>Mathematics</label>
+      <input type="number" name="maths" min="0" max="100" step="0.01" required placeholder="85">
+    </div>
+    <div>
+      <label>Physics</label>
+      <input type="number" name="physics" min="0" max="100" step="0.01" required placeholder="78">
+    </div>
+    <div>
+      <label>Chemistry</label>
+      <input type="number" name="chemistry" min="0" max="100" step="0.01" required placeholder="92">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save Result</button>
+</form>
+
+<hr>
+
+<h2>All Student Records</h2>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search by roll number..." autocomplete="off">
+</div>
+
+<table id="studentsTable">
+  <thead>
+    <tr>
+      <th>Roll</th>
+      <th>Name</th>
+      <th>Maths</th>
+      <th>Physics</th>
+      <th>Chemistry</th>
+      <th>Total</th>
+      <th>Average</th>
+      <th>Grade</th>
+      <th>Added</th>
+    </tr>
+  </thead>
+  <tbody id="studentsBody"></tbody>
+</table>
+
+{% endblock %}s

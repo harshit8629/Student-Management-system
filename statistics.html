@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Class Statistics{% endblock %}
+
+{% block content %}
+
+<h1>Class Performance Statistics</h1>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.count }}</div>
+    <div class="stat-label">Total Students</div>
+  </div>
+  <div class="stat-card highlight">
+    <div class="stat-value">{{ stats.highest }}</div>
+    <div class="stat-label">Highest Total</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.lowest }}</div>
+    <div class="stat-label">Lowest Total</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.average }}</div>
+    <div class="stat-label">Class Average</div>
+  </div>
+</div>
+
+< h2 style="margin-top: 2.5rem;">Student Performance Overview</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Roll</th>
+      <th>Name</th>
+      <th>Total</th>
+      <th>Average</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in students|sort(attribute='total', reverse=true) %}
+    <tr>
+      <td>{{ s.roll }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.total }}</td>
+      <td>{{ s.average }}</td>
+      <td class="grade-{{ s.grade.lower() }}">{{ s.grade }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
